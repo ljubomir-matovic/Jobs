@@ -45,10 +45,10 @@ const AppProvider = ({ children }) => {
         ...userInput,
       })
 
-      dispatch({ type: REGISTER_USER_SUCCESS, payload: data.user.name })
+      dispatch({ type: REGISTER_USER_SUCCESS, payload: data.name })
       localStorage.setItem(
         'user',
-        JSON.stringify({ name: data.user.name, token: data.token })
+        JSON.stringify({ name: data.name, token: data.token })
       )
     } catch (error) {
       dispatch({ type: REGISTER_USER_ERROR })
@@ -59,13 +59,13 @@ const AppProvider = ({ children }) => {
   const login = async (userInput) => {
     setLoading()
     try {
-      const { data } = await axios.post(`/auth/login`, {
+      const {data} = await axios.post(`/auth/login`, {
         ...userInput,
       })
-      dispatch({ type: REGISTER_USER_SUCCESS, payload: data.user.name })
+      dispatch({ type: REGISTER_USER_SUCCESS, payload: data.name })
       localStorage.setItem(
         'user',
-        JSON.stringify({ name: data.user.name, token: data.token })
+        JSON.stringify({ name: data.name, token: data.token })
       )
     } catch (error) {
       dispatch({ type: REGISTER_USER_ERROR })
@@ -97,7 +97,6 @@ const AppProvider = ({ children }) => {
       const { data } = await axios.post(`/jobs`, {
         ...userInput,
       })
-
       dispatch({ type: CREATE_JOB_SUCCESS, payload: data.job })
     } catch (error) {
       dispatch({ type: CREATE_JOB_ERROR })

@@ -51,6 +51,7 @@ const reducer = (state, action) => {
   }
 
   if (action.type === FETCH_JOBS_SUCCESS) {
+    console.log(action.payload)
     return {
       ...state,
       isLoading: false,
@@ -64,10 +65,14 @@ const reducer = (state, action) => {
     return { ...state, isLoading: false }
   }
   if (action.type === CREATE_JOB_SUCCESS) {
+    let jobs;
+    if (state.jobs != undefined)
+      jobs = state.jobs;
+    else jobs = [];
     return {
       ...state,
       isLoading: false,
-      jobs: [...state.jobs, action.payload],
+      jobs: [...jobs, action.payload],
     }
   }
   if (action.type === CREATE_JOB_ERROR) {

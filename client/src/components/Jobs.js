@@ -8,12 +8,10 @@ import JobColumns from './JobColumns';
 
 const Jobs = () => {
   const { jobs, isLoading, deleteJob } = useGlobalContext();
-
   if (isLoading) {
     return <div className='loading'></div>;
-  }
-
-  if (jobs.length < 1) {
+  }console.log(jobs)
+  if (jobs==undefined || jobs.length < 1) {
     return (
       <EmptyContainer>
         <h5>
@@ -23,7 +21,6 @@ const Jobs = () => {
       </EmptyContainer>
     );
   }
-
   return (
     <>
       <JobColumns />

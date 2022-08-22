@@ -107,6 +107,7 @@ function Update() {
               type='submit'
               className='btn btn-block submit-btn'
               disabled={isLoading}
+              style={{marginLeft:15}}
             >
               {isLoading ? 'Editing...' : 'Edit'}
             </button>
