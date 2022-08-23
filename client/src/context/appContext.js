@@ -16,6 +16,7 @@ import {
   FETCH_SINGLE_JOB_ERROR,
   EDIT_JOB_SUCCESS,
   EDIT_JOB_ERROR,
+  STOP_LOADING
 } from './actions'
 import reducer from './reducer'
 
@@ -36,7 +37,9 @@ const AppProvider = ({ children }) => {
   const setLoading = () => {
     dispatch({ type: SET_LOADING })
   }
-
+  const stopLoading=()=>{
+  	dispatch({type:STOP_LOADING})
+  }
   // register
   const register = async (userInput) => {
     setLoading()
@@ -104,6 +107,8 @@ const AppProvider = ({ children }) => {
   }
   const deleteJob = async (jobId) => {
     setLoading()
+    if(!window.confirm('Do you want to delete job with id '+jobId))
+    	return stopLoading();
     try {
       await axios.delete(`/jobs/${jobId}`)
 
@@ -154,6 +159,7 @@ const AppProvider = ({ children }) => {
         deleteJob,
         fetchSingleJob,
         editJob,
+        stopLoading
       }}
     >
       {children}

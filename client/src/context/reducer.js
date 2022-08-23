@@ -13,13 +13,15 @@ import {
   FETCH_SINGLE_JOB_ERROR,
   EDIT_JOB_ERROR,
   EDIT_JOB_SUCCESS,
+  STOP_LOADING
 } from './actions'
 
 const reducer = (state, action) => {
   if (action.type === SET_LOADING) {
     return { ...state, isLoading: true, showAlert: false, editComplete: false }
   }
-
+  if(action.type==STOP_LOADING)
+  	return {...state,isLoading:false}
   if (action.type === REGISTER_USER_SUCCESS) {
     return {
       ...state,
